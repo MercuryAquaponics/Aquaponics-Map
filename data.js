@@ -163,7 +163,7 @@ const DATA = {
   },
 
   "img": {
-    "url": "https://i.imgur.com/13zXD3q.png",
+    "url": "https://raw.githubusercontent.com/MercuryAquaponics/Aquaponics-Map/main/map.png",
     "w": 900,
     "h": 900
   },
