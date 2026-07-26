@@ -1,41 +1,14 @@
 // ======================================================================
 // AQUAPONICS DOME — GARDEN MAP DATA  (DEMO / PLACEHOLDER DATA SET)
 // ======================================================================
-// Forked from the Clarion Hotel garden map, adapted for a tropical
-// aquaponics dome: no "dishes" feature, adds a fish-tank category, and
-// replaces the single container photo with a swipeable PHOTO GALLERY
-// per container (since season/bloom-stage matters a lot here).
-//
-// EVERYTHING PLANT/FISH-RELATED BELOW IS PLACEHOLDER DEMO CONTENT.
-// Swap in the real species list, real tank contents, the real hand-drawn
-// dome layout image, and real photos once confirmed with the owner.
-//
-// QUICK GUIDE:
-//   • Swap the map image             -> "img" section
-//   • Add/edit a plant or fish       -> "species" section
-//   • Add/edit gallery photos        -> "containerImages" section (now an ARRAY per code)
-//   • Add a brand new bed/pot/tank   -> "containers" + "positions" sections
-//   • Change category names/colors  -> "categories" section
-// ======================================================================
 
 const DATA = {
-
-  // ---- LANGUAGES ------------------------------------------------------
-  // Trimmed to sv/en for this demo. Can be expanded to the full 31-language
-  // list later using the same pattern as the Clarion map's data.js.
   "languages": [
     ["sv", "Svenska"],
     ["en", "English"]
   ],
   "verifiedLangs": ["sv", "en"],
 
-  // ---- SPECIES ----------------------------------------------------------
-  // Both PLANTS and FISH live in this one list (a fish is just a "species"
-  // planted in a tank instead of a bed/pot) — this keeps container/detail
-  // logic identical to the Clarion map, no special-casing needed.
-  //
-  // PLACEHOLDER CONTENT — replace with the owner's real plant list and
-  // actual fish species once confirmed.
   "species": {
     "banana": {
       "latin": "Musa acuminata",
@@ -95,12 +68,8 @@ const DATA = {
     }
   },
 
-  // ---- CATEGORIES ---------------------------------------------------------
-  // B = jungle planting beds (irregular, overlapping — the dome's dense zones)
-  // P = smaller hanging/vertical pots tucked between the beds
-  // K = fish tanks ("kar")
   "categories": {
-    "B": {
+    "R": {
       "hex": "#3f7a52",
       "label": { "sv": "Odlingsbäddar", "en": "Planting Beds" }
     },
@@ -108,13 +77,12 @@ const DATA = {
       "hex": "#c9a227",
       "label": { "sv": "Krukor", "en": "Hanging Pots" }
     },
-    "K": {
+    "F": {
       "hex": "#2f7f8c",
       "label": { "sv": "Fisktankar", "en": "Fish Tanks" }
     }
   },
 
-  // ---- UI TEXT ------------------------------------------------------------
   "ui": {
     "searchPlaceholder": { "sv": "Sök i kupolen…", "en": "Search the dome…" },
     "empty": { "sv": "Tom", "en": "Empty" },
@@ -134,79 +102,60 @@ const DATA = {
     "swipeHint": { "sv": "Svep eller klicka för fler bilder", "en": "Swipe or click for more photos" }
   },
 
-  // ---- CONTAINERS -----------------------------------------------------------
-  // "species" = list of species-ids planted/kept here.
-  // "joiner"  = symbol shown between multiple species sharing one bed/tank.
   "containers": {
-    "B1": { "species": ["banana", "passionfruit"], "joiner": "&" },
-    "B2": { "species": ["papaya"], "joiner": "&" },
-    "B3": { "species": ["taro", "water_spinach"], "joiner": "&" },
-    "B4": { "species": ["ginger", "turmeric"], "joiner": "&" },
-    "B5": { "species": ["lemongrass"], "joiner": "&" },
-    "B6": { "species": ["dragonfruit"], "joiner": "&" },
-    "B7": { "species": ["thai_basil", "okra"], "joiner": "&" },
-    "B8": { "species": ["pandan"], "joiner": "&" },
+    "R1": { "species": ["banana", "passionfruit"], "joiner": "&" },
+    "R2": { "species": ["papaya"], "joiner": "&" },
+    "R3": { "species": ["taro", "water_spinach"], "joiner": "&" },
+    "R4": { "species": ["ginger", "turmeric"], "joiner": "&" },
+    "R5": { "species": ["lemongrass"], "joiner": "&" },
+    "R6": { "species": ["dragonfruit"], "joiner": "&" },
+    "R7": { "species": ["thai_basil", "okra"], "joiner": "&" },
+    "R8": { "species": ["pandan"], "joiner": "&" },
+
     "P1": { "species": ["thai_basil"], "joiner": "&" },
     "P2": { "species": [], "joiner": "&" },
     "P3": { "species": ["ginger"], "joiner": "&" },
     "P4": { "species": [], "joiner": "&" },
-    "K1": { "species": ["tilapia"], "joiner": "&" },
-    "K2": { "species": ["koi"], "joiner": "&" }
+
+    "F1": { "species": ["tilapia"], "joiner": "&" },
+    "F2": { "species": ["koi"], "joiner": "&" }
   },
 
-  // ---- PIN POSITIONS --------------------------------------------------------
-  // x/y as % of the map image's width/height.
-  // Updated to match the currently used map image (Imgur), whose composition
-  // differs slightly from the original placeholder drawing.
   "positions": {
-    "B1": { "x": 28.5, "y": 22.8 },
-    "B2": { "x": 73.0, "y": 22.5 },
-    "B3": { "x": 21.5, "y": 41.8 },
-    "B4": { "x": 79.5, "y": 40.8 },
-    "B5": { "x": 21.8, "y": 64.8 },
-    "B6": { "x": 79.6, "y": 65.8 },
-    "B7": { "x": 33.0, "y": 82.8 },
-    "B8": { "x": 70.5, "y": 82.5 },
-    "P1": { "x": 37.6, "y": 50.0 },
-    "P2": { "x": 62.4, "y": 50.0 },
-    "P3": { "x": 50.0, "y": 37.8 },
-    "P4": { "x": 50.0, "y": 62.2 },
-    "K1": { "x": 50.0, "y": 26.8 },
-    "K2": { "x": 50.0, "y": 73.2 }
+    "R1": { "x": 29.9, "y": 16.4 },
+    "R2": { "x": 83.4, "y": 9.8 },
+    "R3": { "x": 34.6, "y": 40.8 },
+    "R4": { "x": 34.6, "y": 63.8 },
+    "R5": { "x": 32.6, "y": 74.5 },
+    "R6": { "x": 63.9, "y": 93.3 },
+    "R7": { "x": 84.7, "y": 40.3 },
+    "R8": { "x": 83.7, "y": 44.1 },
+
+    "P1": { "x": 53.5, "y": 26.2 },
+    "P2": { "x": 56.2, "y": 27.4 },
+    "P3": { "x": 50.7, "y": 28.0 },
+    "P4": { "x": 47.5, "y": 25.8 },
+
+    "F1": { "x": 14.6, "y": 50.4 },
+    "F2": { "x": 84.9, "y": 26.3 }
   },
 
-  // ---- MAP IMAGE ------------------------------------------------------------
-  // PLACEHOLDER schematic — swap "url" for the scanned/enlarged version of
-  // the owner's original hand-drawn dome layout once it's ready. Keep w/h
-  // matching the real image's actual pixel dimensions, or pin positions
-  // (which are %-based) will still work fine regardless.
   "img": {
     "url": "https://i.imgur.com/13zXD3q.png",
     "w": 900,
     "h": 900
   },
 
-  // ---- CONTAINER PHOTO GALLERIES --------------------------------------------
-  // Each code maps to an ARRAY of photos (not a single URL like the Clarion
-  // map) since bloom stage / season matters a lot in the dome. Each entry:
-  //   { "url": "...", "season": { "sv": "...", "en": "..." } }
-  // "url": null shows a tidy placeholder box instead of breaking.
-  //
-  // DEMO placeholders below show the shape of the feature — no real photos
-  // wired in yet.
   "containerImages": {
-    "B1": [
+    "R1": [
       { "url": null, "season": { "sv": "Sommar", "en": "Summer" } },
       { "url": null, "season": { "sv": "Vinter", "en": "Winter" } }
     ],
-    "K1": [
+    "F1": [
       { "url": null, "season": { "sv": "Nyinsatt", "en": "Recently stocked" } }
     ]
   },
 
-  // ---- PLANT / FISH INFO: description text, per species-id -----------------
-  // "sv"/"en" = free-text description (hand-written, Swedish/English only —
-  // same fallback behavior as the Clarion map).
   "plantInfo": {
     "banana": { "sv": null, "en": null },
     "papaya": { "sv": null, "en": null },
