@@ -305,6 +305,11 @@ function renderContainerDetail(code) {
       <span class="detail-label">${ui('type')}</span>
       <span class="detail-value">${cat.label[currentLang] || cat.label.en}</span>
     </div>
+    ${c && c.waterFrom ? `
+    <div class="detail-section">
+      <span class="detail-label">${ui('waterFrom')}</span>
+      <span class="water-tag">💧 ${c.waterFrom}</span>
+    </div>` : ''}
     <div class="detail-section">
       <span class="detail-label">${ui('gallery')}</span>
       ${renderGallery(code)}

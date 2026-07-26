@@ -148,6 +148,11 @@ header {
 .plant-description.placeholder { color:#999; font-style:italic; border-left-color:var(--mist); }
 .fallback-note { font-size:.72rem; color:var(--clay); margin-top:6px; font-style:italic; }
 
+.water-tag {
+  display:inline-flex; align-items:center; gap:5px; background:var(--tank); color:white;
+  font-size:.8rem; font-weight:700; padding:4px 10px; border-radius:14px;
+}
+
 /* ---- GALLERY / CAROUSEL --------------------------------------------------
    Replaces Clarion's single static container-image with a swipeable
    collection — needed here because season/bloom-stage matters and a

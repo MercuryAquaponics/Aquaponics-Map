@@ -1,94 +1,61 @@
 // ======================================================================
-// AQUAPONICS DOME — GARDEN MAP DATA  (DEMO / PLACEHOLDER DATA SET)
+// AQUAPONICS DOME — GARDEN MAP DATA
+// ======================================================================
+// Built from the real map (dome-map.png) and the exact pin positions you
+// marked (mapwithmarkers.png). No plant/fish content has been added yet —
+// every container below is intentionally EMPTY ("species": []) until you
+// fill in what's actually growing/living in each one.
+//
+// LABELING (per your instructions):
+//   Tank A -> T1        Tank B -> T2
+//   Kärl 1..11 -> G1..G11   ("G" = Grow box / Odlingslåda)
+//   Roman numerals I..XV -> P1..P15  ("P" = Pot)
+//
+// NOTE: I only found 15 numbered pots (I through XV) in the marker image,
+// not 16 (I-XVI) — if there's a 16th pot, it wasn't visible/detectable in
+// the image you sent. Flag it and I'll add it once you confirm.
+//
+// WATER SOURCE: G1-G6 draw from T1, G7-G11 draw from T2, per your note
+// about the light/dark blue zones. Stored as "waterFrom" on each grow box
+// and shown as a small tag in its detail page.
 // ======================================================================
 
 const DATA = {
+
   "languages": [
     ["sv", "Svenska"],
     ["en", "English"]
   ],
   "verifiedLangs": ["sv", "en"],
 
-  "species": {
-    "banana": {
-      "latin": "Musa acuminata",
-      "names": { "sv": "Banan", "en": "Banana" }
-    },
-    "papaya": {
-      "latin": "Carica papaya",
-      "names": { "sv": "Papaya", "en": "Papaya" }
-    },
-    "passionfruit": {
-      "latin": "Passiflora edulis",
-      "names": { "sv": "Passionsfrukt", "en": "Passionfruit" }
-    },
-    "taro": {
-      "latin": "Colocasia esculenta",
-      "names": { "sv": "Taro", "en": "Taro" }
-    },
-    "ginger": {
-      "latin": "Zingiber officinale",
-      "names": { "sv": "Ingefära", "en": "Ginger" }
-    },
-    "turmeric": {
-      "latin": "Curcuma longa",
-      "names": { "sv": "Gurkmeja", "en": "Turmeric" }
-    },
-    "dragonfruit": {
-      "latin": "Hylocereus undatus",
-      "names": { "sv": "Drakfrukt", "en": "Dragon Fruit" }
-    },
-    "lemongrass": {
-      "latin": "Cymbopogon citratus",
-      "names": { "sv": "Citrongräs", "en": "Lemongrass" }
-    },
-    "thai_basil": {
-      "latin": "Ocimum basilicum var. thyrsiflora",
-      "names": { "sv": "Thaibasilika", "en": "Thai Basil" }
-    },
-    "water_spinach": {
-      "latin": "Ipomoea aquatica",
-      "names": { "sv": "Vattenspenat", "en": "Water Spinach" }
-    },
-    "pandan": {
-      "latin": "Pandanus amaryllifolius",
-      "names": { "sv": "Pandan", "en": "Pandan" }
-    },
-    "okra": {
-      "latin": "Abelmoschus esculentus",
-      "names": { "sv": "Okra", "en": "Okra" }
-    },
-    "tilapia": {
-      "latin": "Oreochromis niloticus",
-      "names": { "sv": "Tilapia", "en": "Tilapia" }
-    },
-    "koi": {
-      "latin": "Cyprinus rubrofuscus",
-      "names": { "sv": "Koikarp", "en": "Koi Carp" }
-    }
-  },
+  // ---- SPECIES ------------------------------------------------------------
+  // Empty on purpose — add plants/fish here once confirmed, then reference
+  // their id in the relevant container's "species" list below.
+  "species": {},
 
+  // ---- CATEGORIES -----------------------------------------------------------
   "categories": {
-    "R": {
-      "hex": "#3f7a52",
-      "label": { "sv": "Odlingsbäddar", "en": "Planting Beds" }
+    "G": {
+      "hex": "#2f7a2f",
+      "label": { "sv": "Odlingslådor", "en": "Grow Boxes" }
+    },
+    "T": {
+      "hex": "#1f4fa0",
+      "label": { "sv": "Fisktankar", "en": "Fish Tanks" }
     },
     "P": {
-      "hex": "#c9a227",
-      "label": { "sv": "Krukor", "en": "Hanging Pots" }
-    },
-    "F": {
-      "hex": "#2f7f8c",
-      "label": { "sv": "Fisktankar", "en": "Fish Tanks" }
+      "hex": "#7c5c3e",
+      "label": { "sv": "Krukor", "en": "Pots" }
     }
   },
 
+  // ---- UI TEXT --------------------------------------------------------------
   "ui": {
     "searchPlaceholder": { "sv": "Sök i kupolen…", "en": "Search the dome…" },
     "empty": { "sv": "Tom", "en": "Empty" },
     "ourPlants": { "sv": "Växter & Fisk", "en": "Plants & Fish" },
     "back": { "sv": "Tillbaka", "en": "Back" },
-    "container": { "sv": "Odlingsplats", "en": "Container" },
+    "container": { "sv": "Behållare", "en": "Container" },
     "type": { "sv": "Typ", "en": "Type" },
     "plants": { "sv": "Innehåll", "en": "Contents" },
     "description": { "sv": "Beskrivning", "en": "Description" },
@@ -99,108 +66,94 @@ const DATA = {
     "latinLabel": { "sv": "Latinskt namn", "en": "Latin name" },
     "gallery": { "sv": "Bilder", "en": "Photos" },
     "photoPending": { "sv": "Foto kommer", "en": "Photo pending" },
-    "swipeHint": { "sv": "Svep eller klicka för fler bilder", "en": "Swipe or click for more photos" }
+    "swipeHint": { "sv": "Svep eller klicka för fler bilder", "en": "Swipe or click for more photos" },
+    "waterFrom": { "sv": "Vatten från", "en": "Water from" }
   },
 
-    "containers": {
-    "R1": { "species": [], "joiner": "&" },
-    "R2": { "species": [], "joiner": "&" },
-    "R3": { "species": [], "joiner": "&" },
-    "R4": { "species": [], "joiner": "&" },
-    "R5": { "species": [], "joiner": "&" },
-    "R6": { "species": [], "joiner": "&" },
-    "R7": { "species": [], "joiner": "&" },
-    "R8": { "species": [], "joiner": "&" },
-    "R9": { "species": [], "joiner": "&" },
-    "R10": { "species": [], "joiner": "&" },
-    "R11": { "species": [], "joiner": "&" },
-
-    "P1": { "species": [], "joiner": "&" },
-    "P2": { "species": [], "joiner": "&" },
-    "P3": { "species": [], "joiner": "&" },
-    "P4": { "species": [], "joiner": "&" },
-    "P5": { "species": [], "joiner": "&" },
-    "P6": { "species": [], "joiner": "&" },
-    "P7": { "species": [], "joiner": "&" },
-    "P8": { "species": [], "joiner": "&" },
-    "P9": { "species": [], "joiner": "&" },
+  // ---- CONTAINERS -------------------------------------------------------------
+  // "species" left empty everywhere — fill in once you've confirmed contents.
+  // "waterFrom" only applies to G (grow box) codes.
+  "containers": {
+    "G1":  { "species": [], "joiner": "&", "waterFrom": "T1" },
+    "G2":  { "species": [], "joiner": "&", "waterFrom": "T1" },
+    "G3":  { "species": [], "joiner": "&", "waterFrom": "T1" },
+    "G4":  { "species": [], "joiner": "&", "waterFrom": "T1" },
+    "G5":  { "species": [], "joiner": "&", "waterFrom": "T1" },
+    "G6":  { "species": [], "joiner": "&", "waterFrom": "T1" },
+    "G7":  { "species": [], "joiner": "&", "waterFrom": "T2" },
+    "G8":  { "species": [], "joiner": "&", "waterFrom": "T2" },
+    "G9":  { "species": [], "joiner": "&", "waterFrom": "T2" },
+    "G10": { "species": [], "joiner": "&", "waterFrom": "T2" },
+    "G11": { "species": [], "joiner": "&", "waterFrom": "T2" },
+    "T1":  { "species": [], "joiner": "&" },
+    "T2":  { "species": [], "joiner": "&" },
+    "P1":  { "species": [], "joiner": "&" },
+    "P2":  { "species": [], "joiner": "&" },
+    "P3":  { "species": [], "joiner": "&" },
+    "P4":  { "species": [], "joiner": "&" },
+    "P5":  { "species": [], "joiner": "&" },
+    "P6":  { "species": [], "joiner": "&" },
+    "P7":  { "species": [], "joiner": "&" },
+    "P8":  { "species": [], "joiner": "&" },
+    "P9":  { "species": [], "joiner": "&" },
     "P10": { "species": [], "joiner": "&" },
     "P11": { "species": [], "joiner": "&" },
     "P12": { "species": [], "joiner": "&" },
-
-    "F1": { "species": [], "joiner": "&" },
-    "F2": { "species": [], "joiner": "&" }
+    "P13": { "species": [], "joiner": "&" },
+    "P14": { "species": [], "joiner": "&" },
+    "P15": { "species": [], "joiner": "&" }
   },
 
+  // ---- PIN POSITIONS ----------------------------------------------------------
+  // x/y as % of dome-map.png's actual width/height (618 x 614), extracted
+  // directly from the red dots you placed in mapwithmarkers.png.
   "positions": {
-    "R1":  { "x": 22.0, "y": 77.0 },
-    "R2":  { "x": 20.0, "y": 70.0 },
-    "R3":  { "x": 42.0, "y": 50.0 },
-    "R4":  { "x": 38.0, "y": 42.0 },
-    "R5":  { "x": 28.0, "y": 28.0 },
-    "R6":  { "x": 50.0, "y": 22.0 },
-    "R7":  { "x": 68.0, "y": 40.0 },
-    "R8":  { "x": 72.0, "y": 45.0 },
-    "R9":  { "x": 82.0, "y": 60.0 },
-    "R10": { "x": 78.0, "y": 75.0 },
-    "R11": { "x": 60.0, "y": 60.0 },
-
-    "P1":  { "x": 13.8, "y": 40.2 },
-    "P2":  { "x": 17.8, "y": 40.5 },
-    "P3":  { "x": 39.5, "y": 29.5 },
-    "P4":  { "x": 42.8, "y": 32.0 },
-    "P5":  { "x": 46.0, "y": 34.5 },
-    "P6":  { "x": 49.2, "y": 32.8 },
-    "P7":  { "x": 31.5, "y": 49.0 },
-    "P8":  { "x": 36.0, "y": 49.2 },
-    "P9":  { "x": 41.0, "y": 49.0 },
-    "P10": { "x": 46.5, "y": 61.0 },
-    "P11": { "x": 46.0, "y": 66.0 },
-    "P12": { "x": 46.2, "y": 71.0 },
-
-    "F1":  { "x": 22.0, "y": 35.0 },
-    "F2":  { "x": 78.0, "y": 32.0 }
+    "G1":  { "x": 31.42, "y": 77.36 },
+    "G2":  { "x": 30.74, "y": 67.75 },
+    "G3":  { "x": 39.32, "y": 43.00 },
+    "G4":  { "x": 28.77, "y": 33.55 },
+    "G5":  { "x": 30.42, "y": 13.36 },
+    "G6":  { "x": 54.37, "y": 9.12 },
+    "G7":  { "x": 84.47, "y": 43.97 },
+    "G8":  { "x": 84.50, "y": 47.88 },
+    "G9":  { "x": 87.06, "y": 71.82 },
+    "G10": { "x": 69.26, "y": 88.93 },
+    "G11": { "x": 66.99, "y": 62.21 },
+    "T1":  { "x": 19.42, "y": 52.61 },
+    "T2":  { "x": 82.69, "y": 30.46 },
+    "P1":  { "x": 46.93, "y": 80.26 },
+    "P2":  { "x": 46.76, "y": 75.07 },
+    "P3":  { "x": 46.73, "y": 69.22 },
+    "P4":  { "x": 46.80, "y": 65.33 },
+    "P5":  { "x": 32.85, "y": 49.02 },
+    "P6":  { "x": 37.59, "y": 49.01 },
+    "P7":  { "x": 43.06, "y": 48.83 },
+    "P8":  { "x": 15.91, "y": 39.92 },
+    "P9":  { "x": 20.74, "y": 39.85 },
+    "P10": { "x": 46.12, "y": 32.74 },
+    "P11": { "x": 50.49, "y": 35.50 },
+    "P12": { "x": 51.15, "y": 30.80 },
+    "P13": { "x": 55.45, "y": 33.55 },
+    "P14": { "x": 72.99, "y": 33.73 },
+    "P15": { "x": 74.89, "y": 37.64 }
   },
 
+  // ---- MAP IMAGE ----------------------------------------------------------
+  // The real dome layout you uploaded (text labels still on it for now —
+  // you said you'll re-upload a cleaned version later; positions above will
+  // still line up fine since they're %-based).
   "img": {
-    "url": "https://raw.githubusercontent.com/MercuryAquaponics/Aquaponics-Map/main/map.png",
-    "w": 818,
-    "h": 630
+    "url": "dome-map.png",
+    "w": 618,
+    "h": 614
   },
 
-  "containerImages": {
-    "R1": [
-      { "url": null, "season": { "sv": "Sommar", "en": "Summer" } },
-      { "url": null, "season": { "sv": "Vinter", "en": "Winter" } }
-    ],
-    "F1": [
-      { "url": null, "season": { "sv": "Nyinsatt", "en": "Recently stocked" } }
-    ]
-  },
+  // ---- CONTAINER PHOTO GALLERIES --------------------------------------------
+  // Empty for now — add photo URLs (and optional season tags) per code once
+  // you have them. Shape: "CODE": [ { "url": "...", "season": {"sv":"...","en":"..."} } ]
+  "containerImages": {},
 
-  "plantInfo": {
-    "banana": { "sv": null, "en": null },
-    "papaya": { "sv": null, "en": null },
-    "passionfruit": { "sv": null, "en": null },
-    "taro": { "sv": null, "en": null },
-    "ginger": { "sv": null, "en": null },
-    "turmeric": { "sv": null, "en": null },
-    "dragonfruit": { "sv": null, "en": null },
-    "lemongrass": { "sv": null, "en": null },
-    "thai_basil": { "sv": null, "en": null },
-    "water_spinach": {
-      "sv": null,
-      "en": "Grows directly over the tank water, roots trailing in — one of the more visibly \"aquaponic\" plants in the dome."
-    },
-    "pandan": { "sv": null, "en": null },
-    "okra": { "sv": null, "en": null },
-    "tilapia": {
-      "sv": null,
-      "en": "Placeholder species — confirm actual fish stocked in Tank 1 with the owner."
-    },
-    "koi": {
-      "sv": null,
-      "en": "Placeholder species — confirm actual fish stocked in Tank 2 with the owner."
-    }
-  }
+  // ---- PLANT / FISH INFO --------------------------------------------------
+  // Empty — will fill in per species id once "species" above is populated.
+  "plantInfo": {}
 };
