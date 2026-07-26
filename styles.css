@@ -1,0 +1,247 @@
+/* ======================================================================
+   AQUAPONICS DOME — GARDEN MAP STYLES  (forked from the Clarion map)
+   ======================================================================
+   Palette swapped from Clarion's moss/cream/parchment to a warmer,
+   denser jungle-glasshouse feel: deep fern green, humid teal (water/
+   tanks), and a warm terracotta pot accent — since this site is a dense
+   tropical dome rather than an open rectangular garden.
+   ====================================================================== */
+
+:root {
+  --fern:#2f5233; --leaf:#5f9469; --clay:#b9683f; --glass:#f2f6f0; --canopy:#dde8d6;
+  --ink:#20261f; --mist:#cfe3d3; --tank:#2f7f8c; --stagegrey:#232b26; --zoom:1;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family:'Lato','Segoe UI',sans-serif; background:var(--glass); color:var(--ink);
+  height:100vh; display:flex; flex-direction:column; overflow:hidden;
+}
+
+header {
+  background:var(--fern); color:var(--glass); padding:10px 18px; display:flex;
+  align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,.3); flex-shrink:0;
+}
+.header-title { font-family:'Playfair Display',serif; font-size:1.2rem; letter-spacing:.03em; white-space:nowrap; flex-shrink:0; order:0; }
+.header-title span { font-style:italic; color:var(--mist); }
+.layer-panel { display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center; flex:1; order:1; }
+.controls { display:flex; align-items:center; gap:8px; flex-wrap:wrap; flex-shrink:0; order:2; }
+
+.pill {
+  display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.25); border-radius:20px; padding:5px 12px;
+  cursor:pointer; font-size:.78rem; font-weight:700; letter-spacing:.03em;
+  color:var(--mist); user-select:none; white-space:nowrap; transition:background .15s,color .15s;
+}
+.pill:hover { background:rgba(255,255,255,.2); color:white; }
+.pill.checked { background:rgba(255,255,255,.24); color:white; }
+.pill .dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; border:1.5px solid rgba(255,255,255,.5); }
+.pill.checked .dot { border-color:white; }
+.pill input { display:none; }
+
+#our-plants-pill {
+  background:var(--clay); border-color:var(--clay); color:white; font-size:.92rem;
+  padding:7px 18px; font-weight:700; order:3; margin:0 4px;
+}
+#our-plants-pill:hover { background:#a8582f; }
+#lang-btn {
+  background:rgba(255,255,255,.15); border:1.5px solid var(--mist); border-radius:8px;
+  color:white; font-size:1.2rem; padding:6px 10px; cursor:pointer; line-height:1;
+  transition:background .15s;
+}
+#lang-btn:hover { background:rgba(255,255,255,.25); }
+
+.search-wrap { position:relative; }
+#search {
+  background:rgba(255,255,255,.15); border:1.5px solid var(--mist); border-radius:6px;
+  color:white; padding:5px 10px; font-size:.78rem; width:150px; outline:none;
+}
+#search::placeholder { color:rgba(207,227,211,.7); }
+#search-results {
+  position:absolute; top:100%; left:0; right:0; background:var(--glass); border:1px solid var(--fern);
+  border-radius:0 0 6px 6px; max-height:220px; overflow-y:auto; z-index:9999; display:none;
+}
+.search-item { padding:6px 10px; font-size:.78rem; cursor:pointer; color:var(--ink); border-bottom:1px solid var(--canopy); }
+.search-item:hover { background:var(--mist); }
+.search-item .si-code { font-weight:700; color:var(--leaf); margin-right:6px; }
+
+#content-wrap { flex:1; display:flex; overflow:hidden; position:relative; }
+
+.side-panel {
+  width:0; min-width:0; overflow:hidden; background:var(--glass); border-right:2px solid var(--canopy);
+  display:flex; flex-direction:column; transition:width .3s ease,min-width .3s ease; z-index:500;
+}
+.side-panel.open { width:30%; min-width:290px; }
+.panel-header {
+  background:var(--fern); color:var(--glass); padding:12px 16px; display:flex;
+  align-items:center; justify-content:space-between; flex-shrink:0;
+}
+.panel-title { font-family:'Playfair Display',serif; font-size:1rem; font-style:italic; }
+.panel-close {
+  background:none; border:none; color:var(--mist); font-size:1.3rem; cursor:pointer;
+  padding:2px 6px; border-radius:4px; transition:background .15s,color .15s;
+}
+.panel-close:hover { background:rgba(255,255,255,.15); color:white; }
+.panel-body { overflow-y:auto; flex:1; padding:12px 0; }
+
+#lang-grid { display:flex; flex-direction:column; gap:6px; padding:0 12px; }
+.lang-btn {
+  padding:10px 14px; background:var(--canopy); border:1px solid var(--mist); border-radius:6px;
+  cursor:pointer; font-size:.92rem; font-weight:500; color:var(--ink); text-align:left;
+  transition:background .15s, border-color .15s;
+}
+.lang-btn:hover { background:var(--mist); border-color:var(--leaf); }
+.lang-btn.active { background:var(--leaf); color:white; border-color:var(--leaf); }
+
+.category-buttons { display:grid; grid-template-columns:1fr 1fr; grid-auto-rows:auto; gap:6px 8px; padding:0 12px; margin-bottom:8px; }
+.category-btn {
+  padding:6px 8px; background:white; border:2px solid; border-radius:6px; cursor:pointer;
+  font-size:.78rem; font-weight:600; transition:background .15s; text-align:center;
+  white-space:normal; line-height:1.25; width:100%;
+  display:flex; align-items:center; justify-content:center; min-height:44px;
+}
+.category-btn:hover { background:rgba(0,0,0,.05); }
+.category-btn.active { font-weight:700; color:white !important; }
+
+#plant-items { display:flex; flex-direction:column; }
+.plant-item {
+  padding:10px 16px; border-bottom:1px solid var(--canopy); cursor:pointer;
+  transition:background .1s; font-size:.92rem; display:flex; flex-direction:column; gap:2px;
+}
+.plant-item:hover { background:var(--mist); }
+.plant-item .pi-latin { font-size:.78rem; font-style:italic; color:#777; }
+
+.container-item {
+  padding:12px 16px; border-bottom:1px solid var(--canopy); border-left:4px solid;
+  cursor:pointer; transition:background .1s;
+}
+.container-item:hover { background:var(--mist); }
+.container-code { font-weight:700; font-size:.92rem; color:var(--ink); margin-bottom:3px; }
+.container-plants { font-size:.82rem; color:#666; }
+.container-plants.empty { font-style:italic; color:#999; }
+
+#detail-content { padding:16px; }
+.back-btn {
+  background:var(--leaf); color:white; border:none; padding:8px 14px; border-radius:6px;
+  cursor:pointer; font-weight:600; font-size:.85rem; margin-bottom:16px;
+}
+.back-btn:hover { background:var(--fern); }
+.detail-section { margin-bottom:16px; }
+.detail-label {
+  font-size:.72rem; font-weight:700; color:var(--leaf); letter-spacing:.08em;
+  text-transform:uppercase; margin-bottom:4px; display:block;
+}
+.detail-value { font-size:1rem; color:var(--ink); line-height:1.4; }
+.detail-value.latin { font-style:italic; color:#666; font-size:.88rem; }
+
+.plant-list-in-container { display:flex; flex-direction:column; gap:6px; margin:10px 0; }
+.plant-name-link {
+  padding:8px 12px; background:var(--mist); border:1px solid var(--leaf); border-radius:4px;
+  cursor:pointer; font-weight:500; color:var(--ink); transition:background .15s; text-align:left;
+}
+.plant-name-link:hover { background:var(--leaf); color:white; }
+
+.plant-description {
+  background:var(--canopy); padding:12px; border-radius:6px; font-size:.94rem;
+  line-height:1.5; margin:10px 0; border-left:4px solid var(--leaf);
+}
+.plant-description.placeholder { color:#999; font-style:italic; border-left-color:var(--mist); }
+.fallback-note { font-size:.72rem; color:var(--clay); margin-top:6px; font-style:italic; }
+
+/* ---- GALLERY / CAROUSEL --------------------------------------------------
+   Replaces Clarion's single static container-image with a swipeable
+   collection — needed here because season/bloom-stage matters and a
+   single container can have several photos across the year. */
+.gallery-carousel { margin:10px 0; }
+.gallery-viewport {
+  position:relative; width:100%; height:200px; border-radius:8px; overflow:hidden;
+  background:var(--canopy); border:2px dashed var(--mist);
+  display:flex; align-items:center; justify-content:center; touch-action:pan-y;
+}
+.gallery-viewport img { width:100%; height:100%; object-fit:cover; }
+.gallery-placeholder-text { color:#999; font-size:.88rem; text-align:center; padding:0 16px; }
+.gallery-season-tag {
+  position:absolute; bottom:8px; left:8px; background:rgba(32,38,31,.75); color:white;
+  font-size:.72rem; font-weight:700; padding:3px 9px; border-radius:12px; letter-spacing:.03em;
+}
+.gallery-nav {
+  position:absolute; top:50%; transform:translateY(-50%); background:rgba(32,38,31,.55);
+  color:white; border:none; width:30px; height:30px; border-radius:50%; cursor:pointer;
+  font-size:1rem; display:flex; align-items:center; justify-content:center;
+}
+.gallery-nav:hover { background:rgba(32,38,31,.8); }
+.gallery-nav.prev { left:8px; }
+.gallery-nav.next { right:8px; }
+.gallery-dots { display:flex; justify-content:center; gap:6px; margin-top:8px; }
+.gallery-dot { width:8px; height:8px; border-radius:50%; background:var(--mist); cursor:pointer; border:none; padding:0; }
+.gallery-dot.active { background:var(--leaf); }
+.gallery-hint { font-size:.72rem; color:#999; text-align:center; margin-top:4px; font-style:italic; }
+
+#map-viewport { flex:1; min-width:0; position:relative; overflow:hidden; background:var(--stagegrey); cursor:grab; touch-action:none; }
+#map-viewport.grabbing { cursor:grabbing; }
+#map-stage { position:absolute; top:0; left:0; transform-origin:0 0; will-change:transform; }
+#floor-img { display:block; user-select:none; -webkit-user-drag:none; pointer-events:none; }
+
+.pin { position:absolute; transform:translate(-50%,-50%); cursor:pointer; width:18px; height:18px; }
+.pin-dot { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+.pin-dot svg { width:100%; height:100%; filter:drop-shadow(0 1px 3px rgba(0,0,0,.6)); transition:filter .1s; }
+.pin:hover .pin-dot svg { filter:drop-shadow(0 2px 6px rgba(0,0,0,.8)); }
+.pin.hidden-cat { display:none; }
+
+.pin-hint {
+  position:absolute; bottom:100%; left:50%; transform:translate(-50%,-4px) scale(calc(1/var(--zoom)));
+  transform-origin:bottom center; background:var(--ink); color:white; font-size:10px; font-weight:700;
+  padding:2px 6px; border-radius:3px; white-space:nowrap; pointer-events:none; opacity:0; transition:opacity .1s;
+}
+.pin:hover .pin-hint { opacity:.9; }
+
+.pin-tooltip {
+  position:absolute; bottom:calc(100% + 8px); left:50%; transform:translate(-50%,0) scale(calc(1/var(--zoom)));
+  transform-origin:bottom center; background:var(--glass); border:2px solid var(--fern); border-radius:8px;
+  box-shadow:0 4px 16px rgba(0,0,0,.3); padding:10px 30px 10px 14px; min-width:160px; max-width:240px;
+  display:none; z-index:10;
+}
+.pin-tooltip::after {
+  content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
+  border:7px solid transparent; border-top-color:var(--fern);
+}
+.pin-tooltip.open { display:block; }
+.pin-tooltip-close {
+  position:absolute; top:4px; right:6px; background:none; border:none; color:#999;
+  font-size:.95rem; cursor:pointer; line-height:1; padding:2px;
+}
+.pin-tooltip-close:hover { color:var(--ink); }
+.pin-tooltip-cat { font-size:.62rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px; }
+.pin-tooltip-code { font-size:.68rem; font-weight:700; color:var(--leaf); margin-bottom:3px; }
+.pin-tooltip-name { font-family:'Playfair Display',serif; font-size:.98rem; color:var(--ink); line-height:1.3; margin-bottom:4px; }
+.pin-tooltip-empty { color:#999; font-style:italic; }
+.pin-tooltip-latin { font-size:.76rem; color:#666; font-style:italic; border-top:1px solid var(--canopy); padding-top:4px; }
+.pin-tooltip-hint { font-size:.62rem; color:#999; margin-top:5px; }
+
+#zoom-controls { position:absolute; right:14px; bottom:14px; z-index:600; display:flex; flex-direction:column; gap:6px; }
+#zoom-controls button {
+  width:34px; height:34px; border-radius:8px; border:none; background:rgba(47,82,51,.9); color:white;
+  font-size:1.1rem; font-weight:700; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+#zoom-controls button:hover { background:var(--leaf); }
+
+#legend-box {
+  position:absolute; right:58px; bottom:14px; z-index:600; background:rgba(242,246,240,.94);
+  border:1.5px solid var(--canopy); border-radius:8px; padding:8px 12px; font-size:.72rem;
+  display:flex; flex-direction:column; gap:4px; box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+#legend-box .leg-row { display:flex; align-items:center; gap:6px; }
+#legend-box .leg-swatch { width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+
+@media (max-width:768px) {
+  .header-title { font-size:1rem; }
+  .side-panel.open { width:55%; min-width:0; }
+  #search { width:110px; }
+  #zoom-controls { right:10px; bottom:10px; }
+  #zoom-controls button { width:32px; height:32px; font-size:1rem; }
+  #legend-box { right:50px; font-size:.62rem; padding:6px 9px; }
+}
+@media (max-width:480px) {
+  header { padding:8px 12px; }
+  .side-panel.open { width:100%; }
+}

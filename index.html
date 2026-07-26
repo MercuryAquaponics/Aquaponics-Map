@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Aquaponics Dome — Karta</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <div class="header-title">Aquaponics Dome — <span>Kupolkarta</span></div>
+  <div class="controls">
+    <div class="search-wrap">
+      <input type="text" id="search" placeholder="" autocomplete="off">
+      <div id="search-results"></div>
+    </div>
+    <button id="lang-btn" title="Language / Språk">🌐</button>
+  </div>
+  <div class="layer-panel" id="layer-panel"></div>
+</header>
+
+<div id="content-wrap">
+
+  <div class="side-panel" id="lang-panel">
+    <div class="panel-header">
+      <span class="panel-title" id="lang-panel-title">Språk</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div id="lang-grid"></div>
+    </div>
+  </div>
+
+  <div class="side-panel" id="plants-panel">
+    <div class="panel-header">
+      <span class="panel-title" id="plants-panel-title">Växter & Fisk</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="category-buttons" id="category-buttons"></div>
+      <div id="plant-items"></div>
+    </div>
+  </div>
+
+  <div class="side-panel" id="detail-panel">
+    <div class="panel-header">
+      <span class="panel-title" id="detail-panel-title">—</span>
+      <button class="panel-close">✕</button>
+    </div>
+    <div class="panel-body">
+      <div id="detail-content"></div>
+    </div>
+  </div>
+
+  <div id="map-viewport">
+    <div id="map-stage">
+      <img id="floor-img" alt="Aquaponics dome layout">
+      <div id="pins-layer"></div>
+    </div>
+    <div id="zoom-controls">
+      <button id="zoom-in">+</button>
+      <button id="zoom-out">−</button>
+      <button id="zoom-center" title="Centrera">⊙</button>
+    </div>
+    <div id="legend-box"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+  document.getElementById('floor-img').src = DATA.img.url;
+  document.getElementById('floor-img').width = DATA.img.w;
+  document.getElementById('floor-img').height = DATA.img.h;
+</script>
+<script src="app.js"></script>
+</body>
+</html>
