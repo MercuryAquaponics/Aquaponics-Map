@@ -155,23 +155,24 @@ const DATA = {
   },
 
   // ---- PIN POSITIONS --------------------------------------------------------
-  // x/y as % of the map image's width/height. Matched to the placeholder
-  // dome-map-placeholder.svg — RECALCULATE once the real drawing is in place.
+  // x/y as % of the map image's width/height.
+  // Updated to match the currently used map image (Imgur), whose composition
+  // differs slightly from the original placeholder drawing.
   "positions": {
-    "B1": { "x": 27.8, "y": 21.7 },
-    "B2": { "x": 73.9, "y": 21.1 },
-    "B3": { "x": 20.6, "y": 41.7 },
-    "B4": { "x": 81.7, "y": 40.6 },
-    "B5": { "x": 21.1, "y": 65.0 },
-    "B6": { "x": 81.7, "y": 66.7 },
-    "B7": { "x": 32.8, "y": 84.4 },
-    "B8": { "x": 71.7, "y": 83.9 },
-    "P1": { "x": 36.7, "y": 50.0 },
-    "P2": { "x": 63.3, "y": 50.0 },
-    "P3": { "x": 50.0, "y": 36.7 },
-    "P4": { "x": 50.0, "y": 63.3 },
-    "K1": { "x": 50.0, "y": 25.6 },
-    "K2": { "x": 50.0, "y": 74.4 }
+    "B1": { "x": 28.5, "y": 22.8 },
+    "B2": { "x": 73.0, "y": 22.5 },
+    "B3": { "x": 21.5, "y": 41.8 },
+    "B4": { "x": 79.5, "y": 40.8 },
+    "B5": { "x": 21.8, "y": 64.8 },
+    "B6": { "x": 79.6, "y": 65.8 },
+    "B7": { "x": 33.0, "y": 82.8 },
+    "B8": { "x": 70.5, "y": 82.5 },
+    "P1": { "x": 37.6, "y": 50.0 },
+    "P2": { "x": 62.4, "y": 50.0 },
+    "P3": { "x": 50.0, "y": 37.8 },
+    "P4": { "x": 50.0, "y": 62.2 },
+    "K1": { "x": 50.0, "y": 26.8 },
+    "K2": { "x": 50.0, "y": 73.2 }
   },
 
   // ---- MAP IMAGE ------------------------------------------------------------
