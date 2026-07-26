@@ -180,7 +180,7 @@ const DATA = {
   // matching the real image's actual pixel dimensions, or pin positions
   // (which are %-based) will still work fine regardless.
   "img": {
-    "url": "dome-map-placeholder.svg",
+    "url": "https://i.imgur.com/13zXD3q.png",
     "w": 900,
     "h": 900
   },
