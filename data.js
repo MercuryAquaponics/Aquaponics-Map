@@ -164,8 +164,8 @@ const DATA = {
 
   "img": {
     "url": "https://raw.githubusercontent.com/MercuryAquaponics/Aquaponics-Map/main/map.png",
-    "w": 900,
-    "h": 900
+    "w": 818,
+    "h": 630
   },
 
   "containerImages": {
